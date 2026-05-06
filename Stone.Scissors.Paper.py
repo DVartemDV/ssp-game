@@ -59,4 +59,4 @@ result_label.place(x = 180, y = 400)
 computer_choice_label = Label(root, text='', font=('', 20))
 computer_choice_label.place(x = 200, y = 200)
 
-root.mainloop()
+root.mainloop() # работа программы
