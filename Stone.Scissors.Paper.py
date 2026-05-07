@@ -8,8 +8,9 @@ root.resizable(width=False, height=False)
 
 # Комбо
 player_combo_count = 0
-
+max_combo= 0
 combo = 0
+last_max_combo = 0
 
 # Логика Результатов
 rules = {
@@ -20,6 +21,7 @@ rules = {
 
 # Функция выбора
 def play_game(player_choice):
+    global max_combo
     global combo
     global result_text_label
     computer_choice = choice(['Камень', 'Ножницы', "Бумага"])
@@ -31,6 +33,9 @@ def play_game(player_choice):
         combo += 1 # При победе счетчки комбо возрастает
         label_player_combo_count.configure(text=str(f'{combo}'))
         result_text_label.configure(fg='green')
+        if combo > max_combo:
+            max_combo_label.configure(text=(f'{combo}'))
+            max_combo = combo
     else:
         result = 'Поражение'
         combo = 0 # При поражении комбо обнуляется
@@ -72,13 +77,16 @@ computer_choice_label = Label(root, text='', font=('', 30))
 label_player_combo_count = Label(root, text=f'{player_combo_count}', font=('',20), bg='white')
 result_text_label = Label(root, text='result', font=('', 20), bg='white', fg='blue')
 label_combo_text = Label(root, text='combo', font=('', 20), bg='white')
-
+max_combo_label = Label(root, text=f'{max_combo}', font=('',20), bg='white')
+max_combo_text = Label(root, text='max_combo', font=('', 20), bg='white')
 
 # Вывод объектов
 result_label.place(x = 180, y = 100)
 computer_choice_label.place(x = 180, y = 200)
 label_player_combo_count.place(x=100,y=1)
 result_text_label.place(x=100,y=100)
+max_combo_label.place(x=475,y=1)
+max_combo_text.place(x=320, y=1)
 
 stone.place(x = 350, y = 327)
 scissors.place(x = 10, y = 327)
